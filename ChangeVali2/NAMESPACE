@@ -2,6 +2,7 @@
 import("graphics", "stats", "zoo", "raster", "sp", "spacetime")
 
 export(
+  "getxyMatrix",
   "array2sp",
   "pvaluearray2sp",
   "polygon2sp",
@@ -20,7 +21,7 @@ export(
   "gcm",
   "generatecmchange",
   "generatecmpvalue",
-  "generatepvalue",
+  "generateppvalue",
   "generatepchange",
   "barplotcm",
   "generatemapRAS1",
