@@ -1,1 +1,28 @@
-exportPattern("^[^\\.]")
+ 
+import("graphics", "stats", "zoo", "raster", "sp", "spacetime")
+
+export(
+  "array2sp",
+  "pvaluearray2sp",
+  "polygon2sp",
+  "array2STSDF",
+  "array2STFDF",
+  "array2STSDF2",
+  "deterpolytopoints2STSDF",
+  "STFDF2brick",
+  
+  "tfpn",
+  "hexspt",
+  "comparetime",
+  "plottimediff",
+  "hist.time",
+ 
+  "gcm",
+  "generatecmchange",
+  "generatecmpvalue",
+  "generatepvalue",
+  "generatepchange",
+  "barplotcm",
+  "generatemapRAS1",
+  "generateRAS"
+)
