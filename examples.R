@@ -1,6 +1,8 @@
 #library('rgdal')
 #library('rasterVis')
 #run the validation tools, by default using the 150 by 150 validation data and filter
+MODISCRS <- "+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +a=6371007.181 +b=6371007.181 +units=m +no_defs"
+UTM21S <- "+proj=utm +zone=21 +south"
 
 data(prodespoints00) # mask
 data(pdd)           # reference data
@@ -14,11 +16,32 @@ data(tssarar2) # corrected st model with original array cusum
 #####################################
 #example: validate bfast results
 #load("C:\\Users\\m_lu0002\\Dropbox\\mengluchu\\bfast\\a150p05t.Rdata")
+#data(prodespoints00) # mask
+#data(pdd)           # reference data
+#groundtruth<-pdd #
 #c1<-generatepchange(a150p05t)
 #generatemapRAS1(c1,groundtruth,prodespoints00)
 #color2=rep(c('skyblue','red','gold','yellow','blue','antiquewhite2','darkolivegreen1','darkgreen','purple','pink','chartreuse1','deepskyblue4'),1000)
 ##########################
 
+
+ 
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast/SpatialPolygons.R")
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast/tdall2.Rdata")
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast/pp0.Rdata")
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast/rpp.Rdata")
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast/xyc.Rdata")  # whole 22500 points
+
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast2/bt.Rdata")
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast2/t3darrbfamul2.Rdata")
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast/edivisive1.Rdata")
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast/edivisive2.Rdata")
+#load("C:/Users/m_lu0002/Dropbox/mengluchu/bfast/bfast1.Rdata")
+
+
+#SpatialPolygon <- spatialPolygons
+#tdall <- tdall2
+############################
 ##150by 150 # coordinate of MODIS array
 x<-c(58930:59079)
 y<-c(48210:48359)
