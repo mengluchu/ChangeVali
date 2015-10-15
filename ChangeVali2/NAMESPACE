@@ -1,5 +1,5 @@
  
-import("graphics", "stats", "zoo", "raster", "sp", "spacetime","rasterVis")
+import("graphics", "stats", "zoo", "raster", "sp", "spacetime","rasterVis","intervals","hexbin","rgdal")
 
 export(
   "getcrMatrix",
