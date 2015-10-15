@@ -11,7 +11,29 @@
 
 #SpatialPolygon<-spatialPolygons
 #tdall<-tdall2
+##### MODIS array index to MODIS SINUSOIDAL coordinates ##############
+getxyMatrix <- function(colrowid.Matrix, pixelSize,crs=CRS("+proj=utm +zone=21 +south")){
+  
+  x <- vector(mode = "numeric", length = length(nrow(colrowid.Matrix)))
+  y <- vector(mode = "numeric", length = length(nrow(colrowid.Matrix)))
+  corner.ul.x <- -20015109.354
+  corner.ul.y <- 10007554.677
+  x <- corner.ul.x + (pixelSize/2) + (colrowid.Matrix[,1] * pixelSize)
+  y <- corner.ul.y - (pixelSize/2) - (colrowid.Matrix[,2] * pixelSize)
+  cbind(x,y)
+}
 
+getcrMatrix <- function(colrowid.Matrix, pixelSize){
+  
+  x <- vector(mode = "numeric", length = length(nrow(colrowid.Matrix)))
+  y <- vector(mode = "numeric", length = length(nrow(colrowid.Matrix)))
+  corner.ul.x <- -20015109.354
+  corner.ul.y <- 10007554.677
+  x<- round( (colrowid.Matrix[,1] -corner.ul.x - pixelSize/2)/pixelSize) 
+  y<- round(-(colrowid.Matrix[,2] -corner.ul.y + pixelSize/2)/pixelSize) 
+  
+  cbind(x,y)
+}
 array2sp<- function(changearray,x=c(58930:59079),y=c(48210:48359),crs=CRS("+proj=utm +zone=21 +south")) # map the changes from the array that stores the changes. multiple changes are mapped as one change point
 {
   change7<-which(!is.na(changearray ),arr.ind=TRUE) #0.05
@@ -246,6 +268,25 @@ STFDF2brick<-function(from) {
   # need to improve this for character, factor variables
   m <- as.numeric(as.matrix(from@data))
   setValues(b, m)
+}
+
+#only one variable can be selected, currently only for modis array
+STFDF2MODISarray <- function(x3,var1) {
+  
+  dfstevi<-as.data.frame(x3)
+  
+  x2<-spTransform(x3,CRS("+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +a=6371007.181 +b=6371007.181 +units=m +no_defs")) 
+  cr<-getcrMatrix(as.data.frame(x2@sp@coords),231.6564)
+  
+  x<-as.character(unique(cr[,1]))
+  y<-as.character(unique(cr[,2]))
+  
+  a = array(NA, c(length(x),length(y),length(x3@time)))
+  
+  a[,,] =dfstevi[var1][,]
+  
+  dimnames(a) = list(x,y, make.names(index(x3@time)))
+  return(a)
 }
 
 

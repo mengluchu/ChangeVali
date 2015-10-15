@@ -1,7 +1,8 @@
  
-import("graphics", "stats", "zoo", "raster", "sp", "spacetime")
+import("graphics", "stats", "zoo", "raster", "sp", "spacetime","rasterVis")
 
 export(
+  "getcrMatrix",
   "getxyMatrix",
   "array2sp",
   "pvaluearray2sp",
@@ -11,7 +12,7 @@ export(
   "array2STSDF2",
   "deterpolytopoints2STSDF",
   "STFDF2brick",
-  
+  "STFDF2MODISarray",
   "tfpn",
   "hexspt",
   "comparetime",
