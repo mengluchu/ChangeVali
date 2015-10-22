@@ -174,7 +174,7 @@ barplot(cts[,1:4]/22500,beside=TRUE, main=title,
 #generatemapRAS1(cpe2,groundtruth,prodespoints00)
 #generatemapRAS1(cpb,groundtruth,prodespoints00)
 
-generatemapRAS1<-function (pva, groundtruth=groundtruth,prodespoints00=prodespoints00 ) {
+generatemapRAS1<-function (pva, groundtruth=groundtruth,prodespoints00=prodespoints00,cols=c("#BEBADA","#FFFFB3",  "#8DD3C7", "#FB8072")) {
 groundtruth<-spTransform(groundtruth,CRS('+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +a=6371007.181 +b=6371007.181 +units=m +no_defs'))
 prodespoints00<-spTransform(prodespoints00,CRS('+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +a=6371007.181 +b=6371007.181 +units=m +no_defs'))
 pva<-spTransform(pva,CRS('+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +a=6371007.181 +b=6371007.181 +units=m +no_defs'))
@@ -215,7 +215,8 @@ rat <- levels(raty)[[1]]
 rat$class <- c('True Positive', 'True Negative', 'False Positive', 'False Negative')
 levels(raty) <- rat
 #cols = c("#ffff99", "#7fc97f", "#1f78b4", "#fdc086")
-cols = c( "#8DD3C7",  "#FB8072","#BEBADA","#FFFFB3")
+ 
+#c("#BEBADA","#FFFFB3",  "#8DD3C7", "#FB8072") #the sequence is reversed
 
 ty<-levelplot(raty,col.regions =cols,names.attr=c("edivisive"))
 
