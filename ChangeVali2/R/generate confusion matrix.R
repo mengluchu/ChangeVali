@@ -215,13 +215,14 @@ rat <- levels(raty)[[1]]
 rat$class <- c('True Positive', 'True Negative', 'False Positive', 'False Negative')
 levels(raty) <- rat
 #cols = c("#ffff99", "#7fc97f", "#1f78b4", "#fdc086")
-cols = c("#FFFFB3", "#8DD3C7",  "#FB8072","#BEBADA")
+cols = c( "#8DD3C7",  "#FB8072","#BEBADA","#FFFFB3")
 
 ty<-levelplot(raty,col.regions =cols,names.attr=c("edivisive"))
 
 plot(ty)
 }
  
+
 #take 1 object for comparison, plot the raster
 generateRAS<-function (pva , groundtruth=groundtruth,prodespoints00=prodespoints00 ) {
   groundtruth<-spTransform(groundtruth,CRS('+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +a=6371007.181 +b=6371007.181 +units=m +no_defs'))
