@@ -221,9 +221,7 @@ ty<-levelplot(raty,col.regions =cols,names.attr=c("edivisive"))
 
 plot(ty)
 }
-RColorBrewer::display.brewer.pal(n=4,name="Set3")
-?ColorBrewer
-points(c(1:10),col=cols[4])
+ 
 #take 1 object for comparison, plot the raster
 generateRAS<-function (pva , groundtruth=groundtruth,prodespoints00=prodespoints00 ) {
   groundtruth<-spTransform(groundtruth,CRS('+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +a=6371007.181 +b=6371007.181 +units=m +no_defs'))
