@@ -75,7 +75,7 @@ gcm<-function(changepoint, reference.sppoint=pdd,totalp=19167){
 
 ### generate confusion matrix from result array, can use a mask to mask only interest area (sppoints) and set p-value#######
 
-generatecmchange<-function( result.array,mask=prodespoints00,reference.sppoints=pdd,pv=0.05,x=c(58930:59079),y=c(48210:48359),crs=CRS("+proj=utm +zone=21 +south"),totalp=19167) #  put functions together and generate confusion matrix (filtered with a mask)
+generatecmchange<-function( result.array,mask=prodespoints00,reference.sppoints=pdd,pv=0.05,x=c(58930:59079),y=c(48210:48359),crs=NULL,totalp=19167) #  put functions together and generate confusion matrix (filtered with a mask)
 {
   pvpoint<- array2sp(changearray=result.array,x=x,y=y,crs=crs )
   if(!is.null(mask))
@@ -85,10 +85,10 @@ generatecmchange<-function( result.array,mask=prodespoints00,reference.sppoints=
 }
 
 ### generate confusion matrix from p-value array, can use a mask to mask only interest area (sppoints) and set p-value#######
-generatecmpvalue<-function(result.array=pvaluemx ,reference.sppoints=pdd,mask=prodespoints00,pv=0.05,x=c(58930:59079),y=c(48210:48359)) #  put functions together and generate confusion matrix (filtered with a mask)
+generatecmpvalue<-function(result.array=pvaluemx ,reference.sppoints=pdd,mask=prodespoints00,pv=0.05,x=c(58930:59079),y=c(48210:48359),crs=NULL) #  put functions together and generate confusion matrix (filtered with a mask)
 {
 
-  pvpoint<-pvaluearray2sp(result.array,x,y,1,1,pv)
+  pvpoint<-pvaluearray2sp(parray=result.array,x=x,y=y,1,1,pv,crs=crs)
   pvpoint<-pvpoint[mask,]
   showre<-gcm(pvpoint,reference.sppoints)
   return(showre)
