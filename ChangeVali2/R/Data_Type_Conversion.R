@@ -63,7 +63,7 @@ array2sp<- function(changearray,x=c(58930:59079),y=c(48210:48359),crs ) # map th
 pvaluearray2sp<- function(parray,x=c(58930:59079),y=c(48210:48359),xoff=1,yoff=1,pvalue=0.05,crs=CRS("+proj=utm +zone=21 +south")) #map changes from an array of p-values
 {
 
-  change7<-which(parray<pvalue& (parray!=-1) , arr.ind=TRUE)
+  change7<-which(parray<pvalue & (parray!=-1) , arr.ind=TRUE)
 
   xct1<-change7[,1]+x[1]-1+xoff # for the second 150 by 150 array
   xct2<-change7[,1]
@@ -83,9 +83,9 @@ pvaluearray2sp<- function(parray,x=c(58930:59079),y=c(48210:48359),xoff=1,yoff=1
   proj4string(spmodist51)<-'+proj=sinu +lon_0=0 +x_0=0 +y_0=0 +a=6371007.181 +b=6371007.181 +units=m +no_defs'
 
   if(!is.null(crs))
-    modis.mt52<-spTransform(spmodist51, crs)
+    spmodist51<-spTransform(spmodist51, crs)
 
-  return(modis.mt52)
+  return(spmodist51)
 }
 
 

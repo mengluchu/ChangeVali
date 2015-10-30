@@ -97,7 +97,8 @@ generatecmpvalue<-function(result.array=pvaluemx ,reference.sppoints=pdd,mask=pr
 
 generateppvalue<-function(result.array=pvaluemx ,reference.sppoints=pdd,mask=prodespoints00,pv=0.05,x=c(58930:59079),y=c(48210:48359),crs=NULL)
 {
-  pvpoint<-pvaluearray2sp(parray=result.array,x=x,y=y,1,1,pv=pv,crs=crs)
+  pvpoint<-pvaluearray2sp(parray=result.array,x=x,y=y,xoff=1,yoff=1,pv=pv,crs=crs)
+  if(!is.null(mask))
   pvpoint<-pvpoint[mask,]
   return(pvpoint)
 }
